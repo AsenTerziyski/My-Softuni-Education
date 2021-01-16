@@ -1,7 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SQexrcs02BasicStackOperations {
@@ -36,10 +33,21 @@ public class SQexrcs02BasicStackOperations {
             if (numbersStack.contains(x)) {
                 System.out.println("true");
             } else {
-                Integer minEllement = Collections.min(numbersStack);
-                System.out.println(minEllement);
+                //Integer minEllement = Collections.min(numbersStack);
+                //System.out.println(minEllement);
+                int minEllementTwo = getMinEllement(numbersStack);
+                System.out.println(minEllementTwo);
             }
         }
 
+    }
+
+    private static int getMinEllement(ArrayDeque<Integer> numbersStack) {
+        int min = Integer.MAX_VALUE;
+        while (!numbersStack.isEmpty()) {
+            int currentEllement = numbersStack.pop();
+            min = Math.min(min, currentEllement);
+        }
+        return min;
     }
 }
