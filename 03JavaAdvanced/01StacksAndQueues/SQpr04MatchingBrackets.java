@@ -20,7 +20,8 @@ public class SQpr04MatchingBrackets {
 
         }
 
-//        // Other way to print Stack:
+//        Other way to print Stack:
+
 //        for (Integer indexesOpeningBracket : indexesOpeningBrackets) {
 //            System.out.println(indexesOpeningBracket);
 //        }

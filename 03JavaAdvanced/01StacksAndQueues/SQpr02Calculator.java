@@ -46,6 +46,7 @@ public class SQpr02Calculator {
 
     private static int getResult(String token, int rightOperand, int leftOperand) {
         int result = 0;
+
         switch (token) {
             case "+":
                 result = rightOperand + leftOperand;
@@ -54,6 +55,7 @@ public class SQpr02Calculator {
                 result = leftOperand - rightOperand;
                 break;
         }
+
         return result;
     }
 }
