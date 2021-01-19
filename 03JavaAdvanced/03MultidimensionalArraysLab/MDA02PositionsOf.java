@@ -60,6 +60,6 @@ public class MDA02PositionsOf {
             }
             System.out.println();
         }
-
     }
+
 }
