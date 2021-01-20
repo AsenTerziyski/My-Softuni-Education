@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MDA06PrintDiagonalsOfSquareMatrix {
+public class MDAdemo02PrintDiagonalsOFSquareMatrix {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -8,17 +8,25 @@ public class MDA06PrintDiagonalsOfSquareMatrix {
         int[][] matrix = readSquareMatrix(scanner, n);
 
         int row = 0;
-        int col = 0;
-        while (row < n && col < n) {
-            System.out.print(matrix[row++][col++] + " ");
-        }
+        int col = n - 1;
 
-        System.out.println();
+        while (row < n) {
 
-        row = n - 1;
-        col = 0;
-        while (row >= 0 && col < n) {
-            System.out.print(matrix[row--][col++] + " ");
+            int innerRow = row;
+            int innerCol = col;
+
+            while (innerRow < n && innerCol < n) {
+                System.out.print(matrix[innerRow++][innerCol++] + " ");
+            }
+
+            System.out.println();
+            col--;
+
+            if (col < 0) {
+                col = 0;
+                row++;
+            }
+
         }
 
     }
@@ -36,5 +44,4 @@ public class MDA06PrintDiagonalsOfSquareMatrix {
 
         return matrix;
     }
-
 }
