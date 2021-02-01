@@ -39,7 +39,9 @@ public class FP08CustomComparator {
 
         numbers = sortedNumbers.apply(numbers);
         //Consumer<List<Integer>> printList = list -> System.out.print(list + " ");
-        numbers.stream().forEach(el -> System.out.print(el + " "));
+        numbers
+                .stream()
+                .forEach(el -> System.out.print(el + " "));
         //numbers.stream().forEach(e -> System.out.print(e + " "));
     }
 }
