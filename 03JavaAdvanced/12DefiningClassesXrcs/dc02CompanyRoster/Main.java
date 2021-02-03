@@ -11,56 +11,66 @@ public class Main {
         Map<String, Department> departmentMap = new LinkedHashMap<>();
         for (int i = 0; i < n; i++) {
             String[] tokens = scanner.nextLine().split("\\s+");
-            String name = tokens[0];
-            double salary = Double.parseDouble(tokens[1]);
-            String position = tokens[2];
-            String department = tokens[3];
+            String currentName = tokens[0];
+            double currentSalary = Double.parseDouble(tokens[1]);
+            String currentPosition = tokens[2];
+            String currentDepartment = tokens[3];
+
             Employee currentEmployee = null;
-            Department departmentObj = new Department();
-            departmentObj.setEmployeeList(new ArrayList<>());
-            departmentMap.putIfAbsent(department, departmentObj);
+            Department currentDepartmentObject = new Department();
+            //от тук ми идаше грешката:
+            currentDepartmentObject.setEmployeeList(new ArrayList<>());
+
+            departmentMap.putIfAbsent(currentDepartment, currentDepartmentObject);
 
             if (tokens.length == 4) {
-                currentEmployee = new Employee(name, salary, position, department);
+                currentEmployee = new Employee(currentName, currentSalary, currentPosition, currentDepartment);
+
             } else if (tokens.length == 5) {
+
                 if (tokens[4].matches("^\\d+$")) {
-                    int age = Integer.parseInt(tokens[4]);
-                    currentEmployee = new Employee(name, salary, position, department, age);
+                    int currentAge = Integer.parseInt(tokens[4]);
+                    currentEmployee = new Employee(currentName, currentSalary, currentPosition, currentDepartment, currentAge);
+
                 } else {
-                    String email = tokens[4];
-                    currentEmployee = new Employee(name, salary, position, department, email);
+                    String currentEmail = tokens[4];
+                    currentEmployee = new Employee(currentName, currentSalary, currentPosition, currentDepartment, currentEmail);
+
                 }
+
             } else if (tokens.length == 6) {
-                String email = tokens[4];
-                int age = Integer.parseInt(tokens[5]);
-                currentEmployee = new Employee(name, salary, position, department, email, age);
+
+                String currentEmail = tokens[4];
+                int currentAge = Integer.parseInt(tokens[5]);
+                currentEmployee = new Employee(currentName, currentSalary, currentPosition, currentDepartment, currentEmail, currentAge);
+
             }
 
             departmentMap
-                    .get(department)
+                    .get(currentDepartment)
                     .getEmployeeList()
                     .add(currentEmployee);
-
         }
 
         double highestSalary = Integer.MIN_VALUE;
         String bestDepartment = "";
 
         for (Map.Entry<String, Department> entry : departmentMap.entrySet()) {
+
             if (highestSalary < entry.getValue().getAverageSalary()) {
                 highestSalary = entry.getValue().getAverageSalary();
                 bestDepartment = entry.getKey();
             }
+
         }
-
         System.out.println(String.format("Highest Average Salary: %s", bestDepartment));
-        Department department = departmentMap.get(bestDepartment);
 
-        department
+
+        Department bestDepartmentObject = departmentMap.get(bestDepartment);
+        bestDepartmentObject
                 .getEmployeeList()
                 .stream()
                 .sorted((f, s) -> {
-
                     double firstSalary = f.getSalary();
                     double secondSalary = s.getSalary();
                     return Double.compare(secondSalary, firstSalary);
