@@ -9,6 +9,22 @@ public class Point2D {
         this.y = y;
     }
 
+    public boolean isGreaterThanBottomLeftX(int otherX) {
+        return this.x >= otherX;
+    }
+
+    public boolean isSmallerThanTopRightX(int otherX) {
+        return this.x <= otherX;
+    }
+
+    public boolean isGreaterThanBottomLeftY(int otherY) {
+        return this.y >= otherY;
+    }
+
+    public boolean isSmallerThanTopRightY(int otherY) {
+        return this.y <= otherY;
+    }
+
     public int getX() {
         return x;
     }
