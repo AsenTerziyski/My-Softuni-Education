@@ -14,9 +14,9 @@ public class Rectangle {
 //                && point.getY() >= bottomLeft.getY() && point.getY() <= topRight.getY();
 //    }
     public boolean contains(Point2D point) {
-        return point.isGreaterThanBottomLeftX(this.bottomLeft.getX())
-                && point.isSmallerThanTopRightX(this.topRight.getX())
-                && point.isGreaterThanBottomLeftY(this.bottomLeft.getY())
-                && point.isSmallerThanTopRightY(this.topRight.getY());
+        return point.isGreaterThanBottomLeftX(this.bottomLeft)
+                && point.isSmallerThanTopRightX(this.topRight)
+                && point.isGreaterThanBottomLeftY(this.bottomLeft)
+                && point.isSmallerThanTopRightY(this.topRight);
     }
 }
