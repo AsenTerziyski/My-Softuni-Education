@@ -28,8 +28,9 @@ public class Bag {
             } else {
                 this.cash.put(item, this.cash.get(item) + quantity);
             }
+            this.currentTotalQuantity += quantity;
         }
-        this.currentTotalQuantity += quantity;
+        //this.currentTotalQuantity += quantity;
     }
 
     private long getTotalCash() {
@@ -38,7 +39,7 @@ public class Bag {
 
     public void addGems(String item, long quantity) {
         long totalGems = getTotalGems();
-        if (hasFreeCapacity(quantity) && totalGems <= this.gold) {
+        if (hasFreeCapacity(quantity) && totalGems + quantity <= this.gold) {
             if (!this.gems.containsKey(item)) {
                 this.gems.put(item, quantity);
             } else {
