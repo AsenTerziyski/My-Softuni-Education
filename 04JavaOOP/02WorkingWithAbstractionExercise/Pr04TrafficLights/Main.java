@@ -15,10 +15,9 @@ public class Main {
         for (String s : initialTrafficLightState) {
             TrafficLight trafficLight = new TrafficLight(TrafficLightState.valueOf(s));
             trafficLights.add(trafficLight);
-
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < numbersOfUpdates; i++) {
             for (TrafficLight trafficLight : trafficLights) {
                 trafficLight.update();
                 System.out.print(trafficLight + " ");

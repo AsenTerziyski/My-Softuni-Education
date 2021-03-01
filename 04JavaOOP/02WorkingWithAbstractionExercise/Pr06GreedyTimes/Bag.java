@@ -30,7 +30,6 @@ public class Bag {
             }
             this.currentTotalQuantity += quantity;
         }
-        //this.currentTotalQuantity += quantity;
     }
 
     private long getTotalCash() {

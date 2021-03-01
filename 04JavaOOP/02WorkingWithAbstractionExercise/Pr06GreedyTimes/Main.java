@@ -13,7 +13,6 @@ public class Main {
         long bagCapacity = Long.parseLong(scanner.nextLine());
         String[] input = scanner.nextLine().split("\\s+");
 
-//        var torba = new LinkedHashMap<String, LinkedHashMap<String, Long>>();
         Bag bag = new Bag(bagCapacity);
 
         for (int i = 0; i < input.length; i += 2) {
