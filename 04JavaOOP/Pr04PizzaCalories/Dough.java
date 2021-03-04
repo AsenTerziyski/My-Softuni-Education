@@ -14,7 +14,7 @@ public class Dough {
     private void setFlourType(String flourType) {
         if (!"White".equals(flourType)
                 && !"Wholegrain".equals(flourType)) {
-            throw new IllegalArgumentException("Invalid type of dough");
+            throw new IllegalArgumentException("Invalid type of dough.");
         }
 
         this.flourType = flourType;
@@ -24,7 +24,7 @@ public class Dough {
         if (!"Crispy".equals(bakingTechnique)
                 && !"Chewy".equals(bakingTechnique)
                 && !"Homemade".equals(bakingTechnique)) {
-            throw new IllegalArgumentException("Invalid type of dough");
+            throw new IllegalArgumentException("Invalid type of dough.");
         }
 
         this.bakingTechnique = bakingTechnique;
@@ -32,7 +32,7 @@ public class Dough {
 
     private void setWeight(double weight) {
         if (weight < 1 || weight > 200) {
-            throw new IllegalArgumentException("Dough weight should be in the range [1..200]");
+            throw new IllegalArgumentException("Dough weight should be in the range [1..200].");
         }
         this.weight = weight;
     }
