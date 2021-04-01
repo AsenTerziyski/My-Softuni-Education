@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Instock implements ProductStock {
     //private List<Product> products;
@@ -43,40 +45,83 @@ public class Instock implements ProductStock {
         return products.get(label);
     }
 
+
+
+    @Override
+    public Iterable<Product> findFirstByAlphabeticalOrder(int count) {
+        if (count <= 0 || count > this.getCount()) {
+            return new ArrayList<>();
+        }
+        return products
+                .values()
+                .stream()
+                .sorted(Comparator.comparing(Product::getLabel))
+                .limit(count)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Iterable<Product> findAllInRange(double lo, double hi) {
+
+        return this.products
+                .values()
+                .stream()
+                .filter(p -> p.getPrice() > lo && p.getPrice() <= hi)
+                .sorted(Comparator.comparingDouble(Product::getPrice).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Iterable<Product> findAllByPrice(double price) {
+        return products.values().stream().filter(p-> p.getPrice() == price).collect(Collectors.toList());
+    }
+
+    @Override
+    public Iterable<Product> findFirstMostExpensiveProducts(int count) {
+//        if (count <= 0 || count > this.getCount()) {
+//            return new ArrayList<>();
+//        }
+//        return products
+//                .values()
+//                .stream()
+//                .sorted(Comparator.comparingDouble(Product::getPrice).reversed())
+//                .limit(count)
+//                .collect(Collectors.toList());
+        return fetchFirstCountMatching(count, Comparator.comparingDouble(Product::getPrice).reversed());
+    }
+
+    @Override
+    public Iterable<Product> findAllByQuantity(int quantity) {
+        return getAllMatched(p->p.getQuantity() == quantity);
+    }
+
+    @Override
+    public Iterator<Product> iterator() {
+        return products.values().iterator();
+    }
+
+    private Iterable<Product> fetchFirstCountMatching(int count, Comparator<Product> comparator) {
+        if (count <= 0 || count > this.getCount()) {
+            return new ArrayList<>();
+        }
+        return products
+                .values()
+                .stream()
+                .sorted(Comparator.comparingDouble(Product::getPrice).reversed())
+                .limit(count)
+                .collect(Collectors.toList());
+
+    }
+
     private void validateLabelExists(String label) {
         if (!products.containsKey(label)) {
             throw new IllegalArgumentException();
         }
     }
 
-    @Override
-    public Iterable<Product> findFirstByAlphabeticalOrder(int count) {
-        return null;
-    }
+    private Iterable<Product> getAllMatched (Predicate<Product> productPredicate) {
+        return products.values().stream().filter(productPredicate).collect(Collectors.toList());
 
-    @Override
-    public Iterable<Product> findAllInRange(double lo, double hi) {
-        return null;
-    }
-
-    @Override
-    public Iterable<Product> findAllByPrice(double price) {
-        return null;
-    }
-
-    @Override
-    public Iterable<Product> findFirstMostExpensiveProducts(int count) {
-        return null;
-    }
-
-    @Override
-    public Iterable<Product> findAllByQuantity(int quantity) {
-        return null;
-    }
-
-    @Override
-    public Iterator<Product> iterator() {
-        return null;
     }
 
 }
