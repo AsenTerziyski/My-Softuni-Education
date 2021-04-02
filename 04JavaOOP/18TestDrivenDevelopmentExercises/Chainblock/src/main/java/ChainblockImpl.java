@@ -42,14 +42,21 @@ public class ChainblockImpl implements Chainblock {
     }
 
     public void changeTransactionStatus(int id, TransactionStatus newStatus) {
-        if(!this.transactions.containsKey(id)) {
+        if (!this.transactions.containsKey(id)) {
             throw new IllegalArgumentException();
         }
         this.transactions.get(id).setStatus(newStatus);
     }
 
     public void removeTransactionById(int id) {
-
+        if (this.transactions.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        if (!this.transactions.containsKey(id)) {
+            throw new IllegalArgumentException();
+        } else {
+            this.transactions.remove(id);
+        }
     }
 
     public Transaction getById(int id) {

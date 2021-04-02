@@ -90,9 +90,32 @@ public class ChainblockImplTest {
         transaction.setStatus(TransactionStatus.SUCCESSFUL);
     }
 
+    @Test
+    public void testRemoveTransactionByIdShouldRemoveTransactionWithValidId() {
+        this.chainblock.add(this.transaction);
+        this.generateTransactionsForTheTest();
+        chainblock.removeTransactionById(1);
+        int actualSize = chainblock.getCount();
+        int expectedSize = 9;
+        Assert.assertEquals(expectedSize, actualSize);
+
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testRemoveTransactionByIdShouldThrowExceptionIfNoValidId() {
+        this.generateTransactionsForTheTest();
+        chainblock.removeTransactionById(2000000);
+    }
+
+
+
+
+
+
+
 
     private void generateTransactionsForTheTest() {
-        for (int i = transaction.getId(); i <= 10; i++) {
+        for (int i = 2; i <= 10; i++) {
             this.chainblock.add(new TransactionImpl(i, TransactionStatus.FAILED, "A" + i, "B" + i, 10 * i));
         }
     }
