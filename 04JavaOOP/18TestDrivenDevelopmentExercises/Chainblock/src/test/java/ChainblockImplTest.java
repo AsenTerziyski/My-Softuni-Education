@@ -2,12 +2,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.Assert.*;
 
 public class ChainblockImplTest {
 
     private Transaction transaction;
     private Chainblock chainblock;
+    private List<Transaction> transactionList;
 
     @Before
     public void setUp() {
@@ -101,23 +106,122 @@ public class ChainblockImplTest {
 
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testRemoveTransactionByIdShouldThrowExceptionIfNoValidId() {
         this.generateTransactionsForTheTest();
         chainblock.removeTransactionById(2000000);
     }
 
+    @Test
+    public void testGetByValidShouldReturnCorrectTransaction() {
+        chainblock.add(this.transaction);
+        generateTransactionsForTheTest();
+        Transaction actualTransaction = chainblock.getById(1);
+        Assert.assertEquals(this.transaction.getId(), actualTransaction.getId());
+        Assert.assertEquals(this.transaction, actualTransaction);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetByIdShouldThrowExceptionIfIdIsInvalid() {
+        generateTransactionsForTheTest();
+        this.chainblock.getById(0);
+    }
 
+    @Test
+    public void testGetByTransactionStatusShouldReturnTransactionsWithTheGivenStatusOrderedByAmountDescending() {
+        this.generateTransactionsForTheTest();
+        Iterable<Transaction> actualTransactions = this.chainblock.getByTransactionStatus(TransactionStatus.FAILED);
+        List<Transaction> actual = new ArrayList<>();
+        actualTransactions.forEach(at -> actual.add(at));
+        List<Transaction> expected = this.transactionList
+                .stream()
+                .sorted((t1, t2) -> Double.compare(t2.getAmount(), t1.getAmount()))
+                .collect(Collectors.toList());
+        Assert.assertEquals(expected, actual);
+    }
 
+    @Test
+    public void testGetByTransactionStatusShouldReturnListOfSendersNamesWithGivenTransactionStatus() {
+        this.generateTransactionsForTheTest();
+        Iterable<String> actualTransactions = this.chainblock.getAllSendersWithTransactionStatus(TransactionStatus.FAILED);
+        List<String> actual = new ArrayList<>();
+        actualTransactions.forEach(at -> actual.add(at));
+        List<String> expected = this.transactionList
+                .stream()
+                .sorted((t1, t2) -> Double.compare(t1.getAmount(), t2.getAmount()))
+                .map(Transaction::getSender)
+                .collect(Collectors.toList());
+        Assert.assertEquals(expected, actual);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetByInvalidTransactionStatusShouldThrowAnException() {
+        this.generateTransactionsForTheTest();
+        Iterable<String> actualTransactions = this.chainblock.getAllSendersWithTransactionStatus(TransactionStatus.SUCCESSFUL);
+    }
 
+    @Test
+    public void testGetAllSendersByTransactionStatusShouldReturnListOfReceiversNamesWithGivenTransactionStatus() {
+        this.generateTransactionsForTheTest();
+        Iterable<String> actualTransactions = this.chainblock.getAllReceiversWithTransactionStatus(TransactionStatus.FAILED);
+        List<String> actual = new ArrayList<>();
+        actualTransactions.forEach(at -> actual.add(at));
+        List<String> expected = this.transactionList
+                .stream()
+                .sorted((t1, t2) -> Double.compare(t1.getAmount(), t2.getAmount()))
+                .map(Transaction::getReceiver)
+                .collect(Collectors.toList());
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetAllReceiversByInvalidTransactionStatusShouldThrowAnException() {
+        this.generateTransactionsForTheTest();
+        Iterable<String> actualTransactions = this.chainblock.getAllReceiversWithTransactionStatus(TransactionStatus.SUCCESSFUL);
+    }
+
+    @Test
+    public void getAllOrderedByAmountDescendingThenByIdShouldReturnAllTransactionsOrderedByAmountDescendingAndById() {
+        this.generateTransactionsForTheTest();
+        Iterable<Transaction> actualTransactions = this.chainblock.getAllOrderedByAmountDescendingThenById();
+        List<Transaction> actual = new ArrayList<>();
+        actualTransactions.forEach(at -> actual.add(at));
+        List<Transaction> expected = this.transactionList.stream()
+                .sorted((t1, t2) -> {
+                    int result = Double.compare(t1.getAmount(), t2.getAmount());
+                    if (result == 0) {
+                        return Integer.compare(t1.getId(), t2.getId());
+                    }
+                    return result;
+                })
+                .collect(Collectors.toList());
+        Assert.assertEquals(expected, actual);
+    }
 
 
     private void generateTransactionsForTheTest() {
+        this.transactionList = new ArrayList<>();
         for (int i = 2; i <= 10; i++) {
-            this.chainblock.add(new TransactionImpl(i, TransactionStatus.FAILED, "A" + i, "B" + i, 10 * i));
+            Transaction transaction = new TransactionImpl(i, TransactionStatus.FAILED, "A" + i, "B" + i, 10 * i);
+            this.chainblock.add(transaction);
+            this.transactionList.add(transaction);
         }
     }
+
+//    private void generateListTransactions() {
+//        Iterable<Transaction> tr = new ArrayList<>();
+//        for (int i = 5; i >= 1; i--) {
+//            Transaction transaction = new TransactionImpl(i, TransactionStatus.FAILED, "a" + i, "b" + i, 10 * i);
+//            this.transactionList.add(transaction);
+//        }
+//    }
+
+//    @Test
+//    public void demoTestDelta() {
+//        double a = 5.0001;
+//        double b = 5.00;
+//        double delta = (a-b)/10;
+//        assertEquals(a,b,delta);
+//    }
 
 }

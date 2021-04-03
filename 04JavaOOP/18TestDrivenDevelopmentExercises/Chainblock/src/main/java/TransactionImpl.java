@@ -33,4 +33,19 @@ public class TransactionImpl implements Comparable<TransactionImpl>, Transaction
     public void setStatus(TransactionStatus transactionStatus) {
         this.status = transactionStatus;
     }
+
+    @Override
+    public double getAmount() {
+        return this.amount;
+    }
+
+    @Override
+    public String getSender() {
+        return this.from;
+    }
+
+    @Override
+    public String getReceiver() {
+        return this.to;
+    }
 }
