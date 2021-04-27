@@ -9,7 +9,6 @@ import java.util.function.Function;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         Function<String, Person> createPerson = str -> {
             String[] tokens = str.split(", ");
             Person person = new Person(tokens[0], Integer.parseInt(tokens[1]));
@@ -17,7 +16,6 @@ public class Main {
         };
 
         List<Person> people = new ArrayList<>();
-
         int n = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < n; i++) {
             Person person = createPerson.apply(scanner.nextLine());
@@ -52,7 +50,6 @@ public class Main {
             }
         };
 
-
         BiFunction<String, List<Person>, String> formatOutputString = (str, personList) -> {
             String[] formatTokens = str.split("\\s+");
             StringBuilder sb = new StringBuilder();
@@ -86,21 +83,32 @@ public class Main {
         int age = Integer.parseInt(scanner.nextLine());
         String format = scanner.nextLine();
 
-        switch (condition) {
-            case "older": {
-                List<Person> filteredPersonsOlder = filterListOfPersonsOlderThan.apply(age, people);
-                String output = formatOutputString.apply(format, filteredPersonsOlder);
-                System.out.println(output);
+        try {
+            switch (condition) {
+                case "older": {
+                    List<Person> filteredPersonsOlder = filterListOfPersonsOlderThan.apply(age, people);
+                    String output = formatOutputString.apply(format, filteredPersonsOlder);
+                    System.out.println(output);
+//                    break;
+                }
                 break;
+                case "younger": {
+                    List<Person> filteredPersons = filterListOfPersonsYoungerThan.apply(age, people);
+                    String output = formatOutputString.apply(format, filteredPersons);
+                    System.out.println(output);
+                    //break;
+                }
+                break;
+                default:
+                    throw new IllegalArgumentException("Not correct condition!");
             }
-            case "younger": {
-                List<Person> filteredPersons = filterListOfPersonsYoungerThan.apply(age, people);
-                String output = formatOutputString.apply(format, filteredPersons);
-                System.out.println(output);
-            }
-            break;
-            default:
-                throw new IllegalArgumentException("Not correct condition!");
+        } catch (Exception e) {
+            String message = e.getMessage();
+            System.out.println(message);
+        } finally {
+            System.out.println();
+            System.out.println("Program executed!");
+            System.out.println("Exit");
         }
 
     }
