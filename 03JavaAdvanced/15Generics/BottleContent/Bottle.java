@@ -3,7 +3,7 @@ package BottleContent;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class Bottle<T> {
+public abstract class Bottle<T> {
     private Deque<T> liquidContent;
     private T liquid;
 

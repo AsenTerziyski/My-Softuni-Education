@@ -1,21 +1,18 @@
 package BottleContent;
 
-public class Wine {
-    private String brand;
-    private static int count = 0;
+public class Wine extends Liquid {
+    private static int beerBottleCount = counter;
 
     public Wine(String brand) {
-        this.brand = brand;
+        super(brand);
     }
 
-    public static int getCount() {
-        return count+=1;
+    public static int getWineBottleCount() {
+        return beerBottleCount+=1;
     }
 
     @Override
     public String toString() {
-        return "Bottle No" + getCount() + " is filled with " + this.brand;
+        return "Bottle №" + getWineBottleCount() + " is filled with: "+this.getBrand();
     }
-
-
 }
