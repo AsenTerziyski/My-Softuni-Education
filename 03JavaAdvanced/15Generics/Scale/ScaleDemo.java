@@ -27,12 +27,12 @@ public class ScaleDemo<T extends Comparable<T>> {
     }
 
     public T getHeavier() {
-        if (left.compareTo(right) > 1) {
-            return left;
-        } else if (left.compareTo(right) < 1) {
+        if (this.left.compareTo(this.right) == 0) {
+            return null;
+        } else if (left.compareTo(right) < 0) {
             return right;
         }
-        return left;
+        return this.left;
     }
 
     private void exceptionMessage() {
