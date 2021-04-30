@@ -22,7 +22,6 @@ public class Main {
                     bottleOfWine.fillLiquid(new Wine(brand));
                     System.out.println(String.format("Filled wine, brand %s in the bottle No%d", brand, Wine.getWineBottleCount()));
                     totalWineBottles++;
-
                     break;
                 case "beer":
                     bottleOfBeer.fillLiquid(new Beer(brand));
