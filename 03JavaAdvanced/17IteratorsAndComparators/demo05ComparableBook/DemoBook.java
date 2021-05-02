@@ -16,7 +16,7 @@ public class DemoBook {
         this.setTitle(title);
         this.setYear(year);
         this.setAuthors(authors);
-        bookIndex +=1;
+        bookIndex += 1;
         this.bookNumber = bookIndex;
     }
 
@@ -30,6 +30,10 @@ public class DemoBook {
 
     public List<String> getAuthors() {
         return authors;
+    }
+
+    public int getBookNumber() {
+        return bookNumber;
     }
 
     private void setAuthors(String... authors) {
@@ -61,9 +65,9 @@ public class DemoBook {
         StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator());
         for (int i = 0; i < authors.size(); i++) {
-            sb.append(this.authors.get(i) +", ");
+            sb.append(this.authors.get(i) + ", ");
         }
         String substring = sb.substring(0, sb.length() - 2);
-        return String.format("BOOK No: %d TITLE: %s, YEAR: %d,%n   AUTHORS: %s;", bookNumber,this.title, this.year, substring.trim());
+        return String.format("BOOK No: %d TITLE: %s, YEAR: %d,%n   AUTHORS: %s;", bookNumber, this.title, this.year, substring.trim());
     }
 }
