@@ -14,7 +14,6 @@ public class ConsoleReader {
     public String readLine() {
         try {
             return this.reader.readLine();
-
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }

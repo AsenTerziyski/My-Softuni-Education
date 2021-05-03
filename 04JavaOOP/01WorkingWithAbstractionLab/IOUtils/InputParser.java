@@ -6,6 +6,11 @@ public class InputParser {
         return Arrays.stream(input.split(pattern))
                 .mapToInt(n -> Integer.parseInt(n))
                 .toArray();
-
     }
+
+    public static String[] parseArray(String input) {
+        return input.split("\\s+");
+    }
+
+
 }
