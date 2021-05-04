@@ -29,13 +29,15 @@ public class Main {
         Person worker2 = new Worker("Name7", 60, "E");
         System.out.println(worker1);
         System.out.println(worker2);
-        Worker worker3 = new Worker("NameX", 70, "X");
+        Worker worker3 = new Worker("NameX", 49, "X");
         System.out.println(worker3);
 
         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         student3.study();
         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         System.out.println(worker3.work("digging"));
+        worker3.setSalary(100.257);
+        worker3.printSalary();
         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         System.out.println("PROGRAM FINISHED");
         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
