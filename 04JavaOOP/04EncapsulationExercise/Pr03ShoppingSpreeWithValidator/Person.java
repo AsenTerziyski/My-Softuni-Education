@@ -45,4 +45,8 @@ public class Person {
     private boolean hasEnoughMoney(Product product) {
         return this.money >= product.getCost();
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }
