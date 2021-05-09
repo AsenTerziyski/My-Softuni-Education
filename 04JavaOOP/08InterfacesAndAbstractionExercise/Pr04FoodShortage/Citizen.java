@@ -61,8 +61,9 @@ public class Citizen implements Birthable, Identifiable, Buyer, Person {
         this.increaseFood();
     }
 
-    private void increaseFood() {
-        this.food += FOOD_INCREASE;
+    public void increaseFood() {
+        int i = FoodIncreaser.increaseFood(this.food, FOOD_INCREASE);
+        this.food = i;
     }
 
     @Override

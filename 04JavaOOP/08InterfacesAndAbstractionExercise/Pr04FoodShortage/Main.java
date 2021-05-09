@@ -10,6 +10,14 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Buyer buyer1 = new Citizen("A", 10, "ID1", "10.10.2010");
+        System.out.println(buyer1.getFood());
+        buyer1.buyFood();
+        System.out.println(buyer1.getFood());
+        buyer1.buyFood();
+        buyer1.buyFood();
+        buyer1.buyFood();
+        System.out.println(buyer1.getFood());
 
         int n = Integer.parseInt(scanner.nextLine());
         List<Buyer> buyerList = new ArrayList<>();

@@ -50,6 +50,7 @@ public class Rebel implements Buyer, Person {
     }
 
     private void increaseFood() {
-        this.food += FOOD_INCREASE_REBEL;
+        int i = FoodIncreaser.increaseFood(this.food, FOOD_INCREASE_REBEL);
+        this.food = i;
     }
 }
