@@ -3,18 +3,14 @@ package Pr04FoodShortage;
 
 public class Validator {
     static boolean validateBirthDate(String birthDate) {
-        if (birthDate == null || birthDate.trim().isEmpty()) {
-            String emptyOrNull = ExceptionMessages.EMPTY_OR_NULL;
-            throw new IllegalArgumentException(Pr04FoodShortage.ExceptionMessages.NOT_VALID_BDate + " " + emptyOrNull);
-        }
+        validateStringInput(birthDate, ExceptionMessages.NOT_VALID_BDate);
         return true;
     }
 
+
+
     static boolean validateId(String id) {
-        if (id == null || id.trim().isEmpty()) {
-            String emptyOrNull = ExceptionMessages.EMPTY_OR_NULL;
-            throw new IllegalArgumentException(Pr04FoodShortage.ExceptionMessages.NOT_VALID_ID + " " + emptyOrNull);
-        }
+        validateStringInput(id, ExceptionMessages.NOT_VALID_ID);
         return true;
     }
 
@@ -26,26 +22,25 @@ public class Validator {
     }
 
     static boolean validateName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            String emptyOrNull = ExceptionMessages.EMPTY_OR_NULL;
-            throw new IllegalArgumentException(Pr04FoodShortage.ExceptionMessages.NOT_VALID_NAME + " " + emptyOrNull);
-        }
+        validateStringInput(name, ExceptionMessages.NOT_VALID_NAME);
         return true;
     }
 
     public static boolean validateModel(String model) {
-        if (model == null || model.trim().isEmpty()) {
-            String emptyOrNull = ExceptionMessages.EMPTY_OR_NULL;
-            throw new IllegalArgumentException(Pr04FoodShortage.ExceptionMessages.NOT_VALID_MODEL + " " + emptyOrNull);
-        }
+        validateStringInput(model, ExceptionMessages.NOT_VALID_MODEL);
         return true;
     }
 
-    public static boolean validateGroup(String group) {
-        if (group == null || group.trim().isEmpty()) {
-            String emptyOrNull = ExceptionMessages.EMPTY_OR_NULL;
-            throw new IllegalArgumentException(Pr04FoodShortage.ExceptionMessages.NOT_VALID_GROUP + " " + emptyOrNull);
-        }
+    static boolean validateGroup(String group) {
+        validateStringInput(group, ExceptionMessages.NOT_VALID_GROUP);
         return true;
     }
+
+    private static void validateStringInput(String str, String excMessage) {
+        if (str == null || str.trim().isEmpty()) {
+            String emptyOrNull = ExceptionMessages.EMPTY_OR_NULL;
+            throw new IllegalArgumentException(excMessage + " " + emptyOrNull);
+        }
+    }
+
 }

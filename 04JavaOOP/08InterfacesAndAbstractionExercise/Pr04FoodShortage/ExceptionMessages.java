@@ -8,5 +8,6 @@ public class ExceptionMessages {
     static final String NOT_VALID_MODEL = "NOT_VALID_MODEL.";
     static final String NOT_VALID_BDate = "Not valid Birth Date.";
     static final String EMPTY_OR_NULL = "Should not be empty or null!";
+    static final String VALIDATE_PARAMETER_COUNT  = "Wrong parameter count";
 }
 
