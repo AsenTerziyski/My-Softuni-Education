@@ -1,6 +1,6 @@
 package Pr04FoodShortage;
 
-public class Citizen implements Birthable, Identifiable, Buyer {
+public class Citizen implements Birthable, Identifiable, Buyer, Person {
 
     private String name;
     private int age;
@@ -14,17 +14,21 @@ public class Citizen implements Birthable, Identifiable, Buyer {
         this.setAge(age);
         this.setId(id);
         this.setBirthDate(birthDate);
+//        this.food = 0;
     }
 
     private void setBirthDate(String birthDate) {
+        Validator.validateBirthDate(birthDate);
         this.birthDate = birthDate;
     }
 
     private void setId(String id) {
+        Validator.validateId(id);
         this.id = id;
     }
 
     private void setName(String name) {
+        Validator.validateName(name);
         this.name = name;
     }
 

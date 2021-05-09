@@ -1,6 +1,6 @@
 package Pr04FoodShortage;
 
-public class Rebel implements Buyer {
+public class Rebel implements Buyer, Person {
     private static final int FOOD_INCREASE_REBEL = 5;
     private String name;
     private int age;
@@ -14,12 +14,15 @@ public class Rebel implements Buyer {
     }
 
     private void setName(String name) {
+        Validator.validateName(name);
         this.name = name;
     }
     private void setGroup(String group) {
+        Validator.validateGroup(group);
         this.group = group;
     }
     private void setAge(int age) {
+        Validator.validateAge(age);
         this.age = age;
     }
 

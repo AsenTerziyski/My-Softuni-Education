@@ -11,6 +11,19 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         Scanner scanner = new Scanner(System.in);
+        Buyer buyer1 = new Citizen("A", 10, "A1", " ");
+
+//        System.out.println(buyer1.getAge());
+//        System.out.println(buyer1.getFood());
+//        buyer1.buyFood();
+//        buyer1.buyFood();
+//        System.out.println(buyer1.getFood());
+//
+//        buyer1 = new Rebel("B", 20, "d");
+//        System.out.println(buyer1.getFood());
+//        buyer1.buyFood();
+//        System.out.println(buyer1.getFood());
+
         int n = Integer.parseInt(scanner.nextLine());
         List<Buyer> buyerList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
