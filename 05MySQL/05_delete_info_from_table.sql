@@ -1,1 +1,0 @@
-DELETE FROM `gamebar`.`employees` WHERE (`id` = '2');
