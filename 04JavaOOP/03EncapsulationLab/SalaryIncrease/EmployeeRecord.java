@@ -1,6 +1,8 @@
 package SalaryIncrease;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class EmployeeRecord {
@@ -10,7 +12,7 @@ public class EmployeeRecord {
         employees = new ArrayList<>();
     }
 
-    void addPerson (Person person) {
+    void addPerson(Person person) {
         Validator.validatePerson(person);
         this.employees.add(person);
     }
@@ -22,7 +24,8 @@ public class EmployeeRecord {
         this.employees.remove(person);
     }
 
-    public List<Person> getEmployees() {
-        return employees;
+    List<Person> getEmployees() {
+        List<Person> people = Collections.unmodifiableList(this.employees);
+        return people;
     }
 }

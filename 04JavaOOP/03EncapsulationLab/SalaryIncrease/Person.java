@@ -5,12 +5,18 @@ public class Person implements IPerson {
     private String lasName;
     private int age;
     private double salary;
+    private static int id = 0;
+    private int personID;
+    private double oldSalary;
 
     public Person(String firstName, String lasName, int age, double salary) {
         this.setFirstName(firstName);
         this.setLasName(lasName);
         this.setAge(age);
         this.setSalary(salary);
+        this.oldSalary = this.salary;
+        id++;
+        personID = id;
     }
 
     private void setSalary(double salary) {
@@ -42,7 +48,8 @@ public class Person implements IPerson {
 
     @Override
     public String toString() {
-        return String.format("%s %s gets %.2f leva after increasing salary!", this.firstName, this.lasName, this.salary);
+        return String.format("%s %s gets %.2f BGN after increasing salary! His ID is: %d. His salary was %.2f before increasing!", this.firstName, this.lasName, this.salary, this.personID
+        , this.oldSalary);
     }
 
     public double getSalary() {
