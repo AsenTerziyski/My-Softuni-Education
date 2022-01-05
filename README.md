@@ -1,2 +1,2 @@
 # My-Softuni-Education
-My homeworks, exercises, projects etc.
+My homeworks, exercises etc.
